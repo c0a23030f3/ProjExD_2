@@ -1,6 +1,7 @@
 import os
 import random
 import sys
+import time
 import pygame as pg
 
 
@@ -25,7 +26,13 @@ def check_bound(obj_rct:pg.Rect) -> tuple[bool, bool]:
         yoko = False
     if obj_rct.top < 0 or HEIGHT < obj_rct.bottom:
         tate = False
+    print("aioeo")
     return yoko, tate
+
+
+
+
+
 
 
 def main():
@@ -43,6 +50,7 @@ def main():
     bb_rct = bb_img.get_rect()
     bb_rct.center = random.randint(0, WIDTH), random.randint(0, HEIGHT)
     vx, vy = +5, +5  # 横方向速度, 縦方向速度
+    
 
     clock = pg.time.Clock()
     tmr = 0
@@ -53,6 +61,7 @@ def main():
             
         if kk_rct.colliderect(bb_rct):  # こうかとんと爆弾がぶつかったら
             print("Game Over")
+            dis_go(screen)
             return
         screen.blit(bg_img, [0, 0]) 
 
@@ -79,6 +88,19 @@ def main():
         tmr += 1
         clock.tick(50)
 
+def dis_go(screen):
+    back = pg.Surface((WIDTH, HEIGHT))
+    pg.draw.rect(back, (0, 0, 0), pg.Rect(0, 0, WIDTH, HEIGHT))
+    back.set_alpha(200)
+    fonto = pg.font.Font(None, 80)
+    txt = fonto.render("Game Over", True, (255, 255, 255))
+    kk2_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 2.0)    
+    screen.blit(back, [0, 0])
+    screen.blit(txt, [650, 450])
+    screen.blit(kk2_img, [500, 400])
+    screen.blit(kk2_img, [1000, 400])
+    pg.display.update()
+    time.sleep(5)
 
 if __name__ == "__main__":
     pg.init()
