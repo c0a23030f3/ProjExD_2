@@ -61,7 +61,7 @@ def main():
             
         if kk_rct.colliderect(bb_rct):  # こうかとんと爆弾がぶつかったら
             print("Game Over")
-            dis_go(screen)
+            dis_go(screen)  # dis_go関数を呼び出す
             return
         screen.blit(bg_img, [0, 0]) 
 
@@ -88,10 +88,17 @@ def main():
         tmr += 1
         clock.tick(50)
 
-def dis_go(screen):
+def dis_go(screen: pg.Surface):
+    """
+    引数: スクリーン
+    泣いているこうかとんの描画
+    画面をブラックアウト
+    「Game Over」の表示
+    5秒後にプログラムを停止させる
+    """
     back = pg.Surface((WIDTH, HEIGHT))
-    pg.draw.rect(back, (0, 0, 0), pg.Rect(0, 0, WIDTH, HEIGHT))
-    back.set_alpha(200)
+    pg.draw.rect(back, (0, 0, 0), pg.Rect(0, 0, WIDTH, HEIGHT)) 
+    back.set_alpha(200)  # 背景を投下させる
     fonto = pg.font.Font(None, 80)
     txt = fonto.render("Game Over", True, (255, 255, 255))
     kk2_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 2.0)    
