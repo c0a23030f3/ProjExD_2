@@ -30,11 +30,6 @@ def check_bound(obj_rct:pg.Rect) -> tuple[bool, bool]:
     return yoko, tate
 
 
-
-
-
-
-
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
     screen = pg.display.set_mode((WIDTH, HEIGHT))
@@ -88,6 +83,7 @@ def main():
         tmr += 1
         clock.tick(50)
 
+
 def dis_go(screen: pg.Surface):
     """
     引数: スクリーン
@@ -108,6 +104,7 @@ def dis_go(screen: pg.Surface):
     screen.blit(kk2_img, [1000, 400])
     pg.display.update()
     time.sleep(5)
+
 
 if __name__ == "__main__":
     pg.init()
